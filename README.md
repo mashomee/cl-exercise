@@ -30,7 +30,10 @@ Because we love Common Lisp.
 $ cd ~/quicklisp/local-projects
 $ git clone https://github.com/fukamachi/jsonrpc
 $ git clone -b refactor https://github.com/tamamu/darkmatter
-$ git clone https://github.com/tamamu/cl-exercise
+
+$ cd ~/lisp 
+$ git clone https://github.com/t-cool/cl-exercise.git
+
 $ sbcl --eval "(progn (ql:register-local-projects)(ql:quickload :cl-exercise)(exit))"
 ```
 
