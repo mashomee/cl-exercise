@@ -6,6 +6,8 @@
 ## Who We Are
 We are tcool, a Common Lisp training facility in Nara, Japan.
 
+We develop a Common Lisp learning system, cl-exercise.
+
 ## Our Mission
 Our mission is to increase the number of Common lispers in the world.
 
