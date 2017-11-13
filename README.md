@@ -3,7 +3,7 @@
 ![Screen Shot](screenshots/screenshot.png)
 
 
-## Who We Are
+## Who We Are, What We Make
 We are tcool, a Common Lisp training facility in Nara, Japan.
 
 We develop a Common Lisp learning system, cl-exercise.
