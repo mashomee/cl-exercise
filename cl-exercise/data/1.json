@@ -1,0 +1,17 @@
+{
+  "name": "Binding",
+  "purpose": "変数への束縛を学ぶ",
+  "media": "https://www.youtube.com/embed/HM1Zb3xmvMc",
+  "description": "
+  **setq**はシンボルに値を束縛する特殊形式です．
+  ",
+  "content": "
+  いま，パッケージに**result**というシンボルが存在します．  
+  setqを使ってシンボルresultに2 + 3 * 4の計算結果を束縛しなさい．
+  ",
+  "prepare": "(defvar result nil)",
+  "test": "(and (numberp result) (= result (+ 2 (* 3 4))))",
+  "requirements": {
+    "symbols": ["setq", "result"]
+  }
+}

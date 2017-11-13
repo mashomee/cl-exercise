@@ -1,0 +1,99 @@
+{% extends "default.html" %}
+{% block title %}Lisp Tutor{% endblock %}
+{% block head %}
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/bulma.css">
+  <script src="/static/Storage.js"></script>
+  <script>
+    function updateCheckRow() {
+      let checkElements = document.getElementsByClassName("check");
+      for (let checkElement of checkElements) {
+        let check = ExerciseStorage.getCheck(checkElement.dataset.checkId);
+        if (check) {
+          checkElement.dataset.checked = "true";
+        } else {
+          checkElement.dataset.checked = "false";
+        }
+      }
+    }
+    window.onpageshow = () => {
+      let restoreModal = document.getElementById("restore-modal");
+      let restoreButton = document.getElementById("restore-button");
+      let restoreProgress = document.getElementById("restore-progress");
+      restoreButton.onchange = (e) => {
+        let file = e.target.files;
+        if (file.length > 0) {
+          restoreModal.classList.add("is-active");
+          ExerciseStorage.restore(file[0], restoreProgress, () => {
+            updateCheckRow();
+            restoreModal.classList.remove("is-active");
+          });
+        }
+      }
+      updateCheckRow();
+    }
+  </script>
+{% endblock %}
+{% block content %}
+  <div id="restore-modal" class="modal">
+    <div class="modal-background"></div>
+    <div class="modal-content">
+      <progress id="restore-progress" class="progress is-primary" value="0" max="100">0%</progress>
+    </div>
+  </div>
+  <section class="section" style="flex: 1;">
+    <div class="container" style="text-align:right;">
+      <a class="button is-primary" href="#" onclick="ExerciseStorage.download();">
+        <span class="icon">
+          <i class="fa fa-download"></i>
+        </span>
+        <span>Save</span>
+      </a>
+      <label class="file-label is-inline">
+        <input id="restore-button" class="file-input" type="file" name="save">
+        <span class="file-cta">
+          <span class="file-icon">
+            <i class="fa fa-upload"></i>
+          </span>
+          <span class="file-label">
+            Restore
+          </span>
+        </span>
+      </label>
+    </div>
+    <div class="container">
+    <style>
+      .clickable { cursor: pointer; }
+      .check span:before {
+        font-family: FontAwesome;
+      }
+      .check[data-checked="true"] span:before {
+        content: "\f14a";
+      }
+      .check[data-checked="false"] span:before {
+        content: "\f096";
+      }
+    </style>
+        <table class="table is-fullwidth">
+          <thead>
+            <tr>
+              <th class="is-narrow"><abbr title="Number">No.</abbr></th>
+              <th class="is-narrow">Check</th>
+              <th>目標</th>
+            </tr>
+          </thead>
+          <colgroup span="2"></colgroup>
+          <colgroup span="1" class="description"></colgroup>
+          <tbody>
+          {% for q in questions %}
+            <tr class="clickable" onclick="location.href='/ex/{{ q.path }}'">
+            <th>{{ forloop.counter }}</th>
+            <td class="check" data-checked="false" data-check-id="{{ q.path }}"><span></span></td>
+            <td>{{ q.data.purpose }}</td>
+          </tr>
+          {% endfor %}
+          </tbody>
+        </table>
+    </div>
+  </section>
+{% endblock %}
