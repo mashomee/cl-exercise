@@ -1,6 +1,7 @@
 # cl-exercise
 
-Common Lisp Learning System
+![Screen Shot](screenshots/screenshot.png)
+
 
 ## Who We Are
 We are tcool, a Common Lisp training facility in Nara, Japan.
