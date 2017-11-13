@@ -27,6 +27,7 @@ Because we love Common Lisp.
 
 ## Installation
 ```bash
+# install jsonrpc and darkmatter
 $ cd ~/quicklisp/local-projects
 $ git clone https://github.com/fukamachi/jsonrpc
 $ git clone -b refactor https://github.com/tamamu/darkmatter
@@ -34,7 +35,11 @@ $ git clone -b refactor https://github.com/tamamu/darkmatter
 $ cd ~/lisp 
 $ git clone https://github.com/t-cool/cl-exercise.git
 
-$ sbcl --eval "(progn (ql:register-local-projects)(ql:quickload :cl-exercise)(exit))"
+$ sbcl
+
+* (ql:quickload :cl-exercise)
+* (cl-exercise:start)
+
 ```
 
 ## Authors
